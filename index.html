@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunny Holding — Поставки из Китая | Supply from China</title>
+  <meta name="description" content="Sunny Holding Limited — международная группа компаний с головным офисом в Гонконге. Комплексные поставки из Китая: стройматериалы, электрооборудование, мебель, текстиль.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Georgian:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c-navy: #0c1f3f;
+      --c-gold: #b8922d;
+      --c-gold-hover: #caa43d;
+      --c-gold-subtle: rgba(184,146,45,0.06);
+      --c-bg: #f8f9fb;
+      --c-bg-alt: #eff1f5;
+      --c-surface: #ffffff;
+      --c-surface-raised: #ffffff;
+      --c-text: #0f172a;
+      --c-text-secondary: #475569;
+      --c-text-tertiary: #94a3b8;
+      --c-border: #e2e8f0;
+      --c-border-strong: #cbd5e1;
+      --c-nav-bg: rgba(248,249,251,0.9);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+      --font: 'Inter', 'Noto Sans Georgian', system-ui, -apple-system, sans-serif;
+      --max-w: 1080px;
+      --radius: 10px;
+      --radius-lg: 16px;
+      --transition: 0.2s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --c-gold: #d4a853;
+        --c-gold-hover: #e0b86a;
+        --c-gold-subtle: rgba(212,168,83,0.08);
+        --c-bg: #0a0f1a;
+        --c-bg-alt: #111827;
+        --c-surface: #1e293b;
+        --c-surface-raised: #263348;
+        --c-text: #e2e8f0;
+        --c-text-secondary: #94a3b8;
+        --c-text-tertiary: #64748b;
+        --c-border: #1e293b;
+        --c-border-strong: #334155;
+        --c-nav-bg: rgba(10,15,26,0.92);
+        --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+        --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+        --shadow-lg: 0 8px 32px rgba(0,0,0,0.3);
+      }
+    }
+    :root[data-theme="dark"] {
+      --c-gold: #d4a853;
+      --c-gold-hover: #e0b86a;
+      --c-gold-subtle: rgba(212,168,83,0.08);
+      --c-bg: #0a0f1a;
+      --c-bg-alt: #111827;
+      --c-surface: #1e293b;
+      --c-surface-raised: #263348;
+      --c-text: #e2e8f0;
+      --c-text-secondary: #94a3b8;
+      --c-text-tertiary: #64748b;
+      --c-border: #1e293b;
+      --c-border-strong: #334155;
+      --c-nav-bg: rgba(10,15,26,0.92);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--c-text);
+      background: var(--c-bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--c-nav-bg);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--c-border);
+      transition: background var(--transition);
+    }
+    .nav__inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav__logo {
+      font-size: 1rem; font-weight: 800;
+      color: var(--c-navy); letter-spacing: 0.06em;
+      text-decoration: none;
+    }
+    [data-theme="dark"] .nav__logo,
+    :root:not([data-theme="light"]) .nav__logo { color: var(--c-gold); }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) .nav__logo { color: var(--c-navy); }
+    }
+    .nav__center { display: flex; align-items: center; gap: 24px; list-style: none; }
+    .nav__center a {
+      text-decoration: none; color: var(--c-text-secondary);
+      font-size: 0.85rem; font-weight: 500; transition: color var(--transition);
+    }
+    .nav__center a:hover { color: var(--c-text); }
+    .nav__right { display: flex; align-items: center; gap: 8px; }
+
+    .lang-sw { position: relative; }
+    .lang-sw__toggle {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: none; border: 1px solid var(--c-border);
+      cursor: pointer; border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--c-text-secondary); font-family: var(--font);
+      transition: all var(--transition);
+    }
+    .lang-sw__toggle:hover { border-color: var(--c-border-strong); color: var(--c-text); }
+    .lang-sw__toggle svg { width: 12px; height: 12px; transition: transform 0.2s; }
+    .lang-sw.open .lang-sw__toggle svg { transform: rotate(180deg); }
+    .lang-sw__menu {
+      display: none;
+      position: absolute; top: calc(100% + 4px); right: 0;
+      background: var(--c-surface); border: 1px solid var(--c-border);
+      border-radius: 8px; box-shadow: var(--shadow-md);
+      min-width: 130px; padding: 4px; z-index: 200;
+    }
+    .lang-sw.open .lang-sw__menu { display: block; }
+    .lang-sw__menu button {
+      display: flex; align-items: center; gap: 8px;
+      width: 100%; background: none; border: none;
+      cursor: pointer; border-radius: 5px;
+      padding: 8px 10px;
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--c-text-secondary); font-family: var(--font);
+      transition: all var(--transition); text-align: left;
+    }
+    .lang-sw__menu button:hover { background: var(--c-bg-alt); color: var(--c-text); }
+    .lang-sw__menu button.active { color: var(--c-gold); font-weight: 600; }
+
+    .theme-btn {
+      background: none; border: 1px solid var(--c-border);
+      cursor: pointer; border-radius: 6px;
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--c-text-secondary); transition: all var(--transition);
+    }
+    .theme-btn:hover { border-color: var(--c-border-strong); color: var(--c-text); }
+    .theme-btn svg { width: 16px; height: 16px; }
+    .theme-btn .icon-moon { display: block; }
+    .theme-btn .icon-sun { display: none; }
+    [data-theme="dark"] .theme-btn .icon-moon { display: none; }
+    [data-theme="dark"] .theme-btn .icon-sun { display: block; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .theme-btn .icon-moon { display: none; }
+      :root:not([data-theme="light"]) .theme-btn .icon-sun { display: block; }
+    }
+
+    .nav__burger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 34px; height: 34px; position: relative;
+    }
+    .nav__burger span {
+      display: block; width: 20px; height: 1.5px; background: var(--c-text);
+      position: absolute; left: 7px; transition: 0.25s;
+    }
+    .nav__burger span:nth-child(1) { top: 10px; }
+    .nav__burger span:nth-child(2) { top: 16px; }
+    .nav__burger span:nth-child(3) { top: 22px; }
+    .nav__burger.active span:nth-child(1) { top: 16px; transform: rotate(45deg); }
+    .nav__burger.active span:nth-child(2) { opacity: 0; }
+    .nav__burger.active span:nth-child(3) { top: 16px; transform: rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      .nav__burger { display: block; }
+      .nav__center { display: none; }
+      .nav.open .nav__center {
+        display: flex; flex-direction: column; gap: 0;
+        position: absolute; top: 60px; left: 0; right: 0;
+        background: var(--c-nav-bg); backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--c-border);
+        padding: 8px 16px 16px;
+      }
+      .nav.open .nav__center a { display: block; padding: 10px 0; font-size: 0.95rem; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(165deg, #06101f 0%, #0c1f3f 50%, #142d54 100%);
+      color: #e8ecf4;
+      padding: 130px 16px 70px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 10%, rgba(184,146,45,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero__inner {
+      max-width: var(--max-w); margin: 0 auto;
+      text-align: center; position: relative;
+    }
+    .hero__tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(184,146,45,0.1);
+      border: 1px solid rgba(184,146,45,0.2);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 0.78rem; font-weight: 600;
+      color: #d4a853; margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -0.025em;
+      max-width: 760px; margin: 0 auto 20px;
+      color: #ffffff;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #d4a853, #f0d78c);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero__sub {
+      font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+      color: #a0b0c8;
+      max-width: 600px; margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .hero__actions {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    }
+    .hero__indicators {
+      display: flex; align-items: center; justify-content: center;
+      gap: 28px; flex-wrap: wrap; padding: 36px 0 0;
+    }
+    .hero__ind {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.8rem; color: #8a9bba; font-weight: 500;
+    }
+    .hero__ind svg { width: 16px; height: 16px; color: #d4a853; flex-shrink: 0; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 26px; border-radius: 8px;
+      font-family: var(--font);
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; transition: all var(--transition);
+      border: none; cursor: pointer; letter-spacing: -0.01em;
+    }
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .btn--gold {
+      background: linear-gradient(145deg, #b8922d 0%, #a07e22 100%);
+      color: #fff; box-shadow: 0 2px 8px rgba(184,146,45,0.3);
+    }
+    .btn--gold:hover {
+      background: linear-gradient(145deg, #caa43d 0%, #b8922d 100%);
+      box-shadow: 0 4px 16px rgba(184,146,45,0.35);
+      transform: translateY(-1px);
+    }
+    .btn--outline {
+      background: transparent; color: #c8d6ea;
+      border: 1px solid rgba(200,214,234,0.25);
+    }
+    .btn--outline:hover { border-color: rgba(200,214,234,0.45); color: #fff; }
+    .btn--wa {
+      background: #25d366; color: #fff;
+      box-shadow: 0 2px 8px rgba(37,211,102,0.25);
+    }
+    .btn--wa:hover { background: #20c05c; transform: translateY(-1px); }
+    .btn--ghost {
+      background: var(--c-surface); color: var(--c-text);
+      border: 1px solid var(--c-border);
+    }
+    .btn--ghost:hover { border-color: var(--c-border-strong); background: var(--c-surface-raised); }
+
+    /* ── STATS ── */
+    .stats {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 48px 16px 0;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    }
+    .stat {
+      text-align: center; padding: 24px 12px;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .stat__num {
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--c-gold); line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .stat__label {
+      font-size: 0.78rem; color: var(--c-text-secondary);
+      margin-top: 4px; font-weight: 500;
+    }
+    @media (max-width: 640px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 80px 16px;
+    }
+    .section--alt { background: var(--c-bg-alt); transition: background var(--transition); }
+    .section__eyebrow {
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--c-gold); margin-bottom: 8px;
+    }
+    .section__title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800; line-height: 1.2;
+      letter-spacing: -0.02em; margin-bottom: 12px;
+    }
+    .section__desc {
+      font-size: 0.95rem; color: var(--c-text-secondary);
+      max-width: 560px; margin-bottom: 40px; line-height: 1.65;
+    }
+
+    /* ── DIRECTIONS ── */
+    .directions {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 14px;
+    }
+    .dir {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .dir:hover { border-color: var(--c-gold); box-shadow: var(--shadow-md); }
+    .dir__icon {
+      flex-shrink: 0;
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--c-gold-subtle);
+      border: 1px solid rgba(184,146,45,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .dir__icon svg { width: 18px; height: 18px; color: var(--c-gold); }
+    .dir__title {
+      font-weight: 700; font-size: 0.9rem;
+      margin-bottom: 3px; letter-spacing: -0.01em;
+    }
+    .dir__text {
+      font-size: 0.82rem; color: var(--c-text-secondary); line-height: 1.5;
+    }
+
+    /* ── STEPS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+    .step {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .step:hover { border-color: var(--c-gold); box-shadow: var(--shadow-md); }
+    .step__num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--c-navy); color: #d4a853;
+      font-weight: 700; font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+    [data-theme="dark"] .step__num { background: #1a365d; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .step__num { background: #1a365d; }
+    }
+    .step__title {
+      font-weight: 700; font-size: 0.9rem;
+      margin-bottom: 4px; letter-spacing: -0.01em;
+    }
+    .step__text {
+      font-size: 0.82rem; color: var(--c-text-secondary); line-height: 1.5;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 16px 80px;
+    }
+    .cta-banner {
+      background: linear-gradient(145deg, #0c1f3f 0%, #142d54 100%);
+      border-radius: var(--radius-lg);
+      padding: 56px 32px;
+      text-align: center; color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute; top: -60%; right: -20%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(184,146,45,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-banner h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 10px; position: relative;
+    }
+    .cta-banner p {
+      font-size: 0.95rem; color: #a0b0c8;
+      max-width: 480px; margin: 0 auto 28px; position: relative;
+    }
+    .cta-banner .cta-buttons {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+      position: relative;
+    }
+    .cta-phone {
+      font-size: 0.85rem; color: #8a9bba;
+      margin-top: 20px; position: relative;
+    }
+    .cta-phone a { color: #c8d6ea; text-decoration: none; font-weight: 600; }
+    .cta-phone a:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--c-border);
+      padding: 32px 16px;
+      transition: border-color var(--transition);
+    }
+    .footer__inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer__brand { font-weight: 800; font-size: 0.9rem; color: var(--c-gold); letter-spacing: 0.04em; }
+    .footer__copy { font-size: 0.76rem; color: var(--c-text-tertiary); margin-top: 2px; }
+    .footer__right { text-align: right; }
+    .footer__right a, .footer__right span {
+      font-size: 0.82rem; color: var(--c-text-secondary);
+      text-decoration: none; transition: color var(--transition);
+    }
+    .footer__right a:hover { color: var(--c-gold); }
+    .footer__addr { display: block; margin-bottom: 2px; }
+    .footer__phone { font-weight: 600; }
+
+    /* ── i18n ── */
+    [data-i18n] > [data-lang] { display: none; }
+    [data-i18n] > [data-lang="ru"] { display: inline; }
+    html[lang="kk"] [data-i18n] > [data-lang] { display: none; }
+    html[lang="kk"] [data-i18n] > [data-lang="kk"] { display: inline; }
+    html[lang="en"] [data-i18n] > [data-lang] { display: none; }
+    html[lang="en"] [data-i18n] > [data-lang="en"] { display: inline; }
+    html[lang="ka"] [data-i18n] > [data-lang] { display: none; }
+    html[lang="ka"] [data-i18n] > [data-lang="ka"] { display: inline; }
+    html[lang="be"] [data-i18n] > [data-lang] { display: none; }
+    html[lang="be"] [data-i18n] > [data-lang="be"] { display: inline; }
+
+    [data-i18n].block-i18n > [data-lang] { display: none; }
+    [data-i18n].block-i18n > [data-lang="ru"] { display: block; }
+    html[lang="kk"] [data-i18n].block-i18n > [data-lang] { display: none; }
+    html[lang="kk"] [data-i18n].block-i18n > [data-lang="kk"] { display: block; }
+    html[lang="en"] [data-i18n].block-i18n > [data-lang] { display: none; }
+    html[lang="en"] [data-i18n].block-i18n > [data-lang="en"] { display: block; }
+    html[lang="ka"] [data-i18n].block-i18n > [data-lang] { display: none; }
+    html[lang="ka"] [data-i18n].block-i18n > [data-lang="ka"] { display: block; }
+    html[lang="be"] [data-i18n].block-i18n > [data-lang] { display: none; }
+    html[lang="be"] [data-i18n].block-i18n > [data-lang="be"] { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo">SUNNY HOLDING</a>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__center">
+      <li><a href="#directions" data-i18n><span data-lang="ru">Направления</span><span data-lang="kk">Бағыттар</span><span data-lang="en">Services</span><span data-lang="ka">მიმართულებები</span><span data-lang="be">Напрамкі</span></a></li>
+      <li><a href="#process" data-i18n><span data-lang="ru">Процесс</span><span data-lang="kk">Процесс</span><span data-lang="en">Process</span><span data-lang="ka">პროცესი</span><span data-lang="be">Працэс</span></a></li>
+      <li><a href="#contact" data-i18n><span data-lang="ru">Контакты</span><span data-lang="kk">Байланыс</span><span data-lang="en">Contact</span><span data-lang="ka">კონტაქტი</span><span data-lang="be">Кантакт</span></a></li>
+    </ul>
+    <div class="nav__right">
+      <div class="lang-sw" id="langSw">
+        <button class="lang-sw__toggle" id="langToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+          <span id="langLabel">RU</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-sw__menu">
+          <button data-lang-btn="ru" class="active">Русский</button>
+          <button data-lang-btn="kk">Қазақша</button>
+          <button data-lang-btn="en">English</button>
+          <button data-lang-btn="ka">ქართული</button>
+          <button data-lang-btn="be">Беларуская</button>
+        </div>
+      </div>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__tag" data-i18n>
+      <span data-lang="ru">Международная группа компаний · Гонконг</span>
+      <span data-lang="kk">Халықаралық компаниялар тобы · Гонконг</span>
+      <span data-lang="en">International Holding · Hong Kong</span>
+      <span data-lang="ka">საერთაშორისო ჰოლდინგი · ჰონგ კონგი</span>
+      <span data-lang="be">Міжнародны холдынг · Ганконг</span>
+    </div>
+
+    <h1 data-i18n>
+      <span data-lang="ru">От розетки до гостиницы — <em>поставки из Китая под ключ</em></span>
+      <span data-lang="kk">Розеткадан қонақүйге дейін — <em>Қытайдан «кілтке» дайын жеткізу</em></span>
+      <span data-lang="en">From a socket to a hotel — <em>turnkey supply from China</em></span>
+      <span data-lang="ka">როზეტიდან სასტუმრომდე — <em>მიწოდება ჩინეთიდან გასაღებზე</em></span>
+      <span data-lang="be">Ад разеткі да гасцініцы — <em>пастаўкі з Кітая пад ключ</em></span>
+    </h1>
+
+    <p class="hero__sub" data-i18n>
+      <span data-lang="ru">Стройматериалы, электрооборудование, мебель, текстиль — бесперебойные поставки от производителя с полным сопровождением</span>
+      <span data-lang="kk">Құрылыс материалдары, электр жабдықтары, жиһаз, тоқыма — өндірушіден үздіксіз жеткізу, толық сүйемелдеумен</span>
+      <span data-lang="en">Construction materials, electrical equipment, furniture, textiles — continuous supply from the manufacturer with full support</span>
+      <span data-lang="ka">სამშენებლო მასალები, ელექტრომოწყობილობა, ავეჯი, ტექსტილი — უწყვეტი მიწოდება მწარმოებლისგან სრული თანხლებით</span>
+      <span data-lang="be">Будматэрыялы, электраабсталяванне, мэбля, тэкстыль — бесперабойныя пастаўкі ад вытворцы з поўным суправаджэннем</span>
+    </p>
+
+    <div class="hero__actions">
+      <a href="#contact" class="btn btn--gold" data-i18n>
+        <span data-lang="ru">Обсудить поставку</span>
+        <span data-lang="kk">Жеткізуді талқылау</span>
+        <span data-lang="en">Discuss supply</span>
+        <span data-lang="ka">მიწოდების განხილვა</span>
+        <span data-lang="be">Абмеркаваць пастаўку</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#directions" class="btn btn--outline" data-i18n>
+        <span data-lang="ru">Направления</span>
+        <span data-lang="kk">Бағыттар</span>
+        <span data-lang="en">Our services</span>
+        <span data-lang="ka">მიმართულებები</span>
+        <span data-lang="be">Напрамкі</span>
+      </a>
+    </div>
+
+    <div class="hero__indicators">
+      <div class="hero__ind">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span data-i18n><span data-lang="ru">Официальный договор</span><span data-lang="kk">Ресми шарт</span><span data-lang="en">Official contract</span><span data-lang="ka">ოფიციალური ხელშეკრულება</span><span data-lang="be">Афіцыйны дагавор</span></span>
+      </div>
+      <div class="hero__ind">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+        <span data-i18n><span data-lang="ru">Полный цикл поставки</span><span data-lang="kk">Жеткізудің толық циклі</span><span data-lang="en">Full supply cycle</span><span data-lang="ka">მიწოდების სრული ციკლი</span><span data-lang="be">Поўны цыкл пастаўкі</span></span>
+      </div>
+      <div class="hero__ind">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        <span data-i18n><span data-lang="ru">Цены производителя</span><span data-lang="kk">Өндіруші бағалары</span><span data-lang="en">Manufacturer prices</span><span data-lang="ka">მწარმოებლის ფასები</span><span data-lang="be">Цэны вытворцы</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat__num">HK</div>
+    <div class="stat__label" data-i18n>
+      <span data-lang="ru">Головной офис</span><span data-lang="kk">Бас кеңсе</span><span data-lang="en">Headquarters</span><span data-lang="ka">სათავო ოფისი</span><span data-lang="be">Галаўны офіс</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat__num">5+</div>
+    <div class="stat__label" data-i18n>
+      <span data-lang="ru">Направлений поставок</span><span data-lang="kk">Жеткізу бағыттары</span><span data-lang="en">Supply categories</span><span data-lang="ka">მიწოდების მიმართულება</span><span data-lang="be">Напрамкаў пастаўкі</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat__num">360°</div>
+    <div class="stat__label" data-i18n>
+      <span data-lang="ru">Полный цикл</span><span data-lang="kk">Толық цикл</span><span data-lang="en">Full cycle</span><span data-lang="ka">სრული ციკლი</span><span data-lang="be">Поўны цыкл</span>
+    </div>
+  </div>
+  <div class="stat">
+    <div class="stat__num">100%</div>
+    <div class="stat__label" data-i18n>
+      <span data-lang="ru">Контроль в КНР</span><span data-lang="kk">ҚХР-дағы бақылау</span><span data-lang="en">QC in China</span><span data-lang="ka">კონტროლი ჩინეთში</span><span data-lang="be">Кантроль у КНР</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── DIRECTIONS ── -->
+<section class="section" id="directions">
+  <div class="section__eyebrow" data-i18n>
+    <span data-lang="ru">Направления</span><span data-lang="kk">Бағыттар</span><span data-lang="en">Services</span><span data-lang="ka">მიმართულებები</span><span data-lang="be">Напрамкі</span>
+  </div>
+  <h2 class="section__title" data-i18n>
+    <span data-lang="ru">Всё для строительства и обустройства</span>
+    <span data-lang="kk">Құрылыс пен жабдықтау үшін бәрі</span>
+    <span data-lang="en">Everything for construction and furnishing</span>
+    <span data-lang="ka">ყველაფერი მშენებლობისა და მოწყობისთვის</span>
+    <span data-lang="be">Усё для будаўніцтва і абсталявання</span>
+  </h2>
+  <p class="section__desc" data-i18n>
+    <span data-lang="ru">Поставляем полный спектр продукции напрямую с фабрик КНР — от строительных материалов до готовых интерьерных решений</span>
+    <span data-lang="kk">Толық өнім спектрін ҚХР зауыттарынан тікелей жеткіземіз — құрылыс материалдарынан дайын интерьер шешімдеріне дейін</span>
+    <span data-lang="en">We supply a full range of products directly from Chinese factories — from construction materials to complete interior solutions</span>
+    <span data-lang="ka">ვაწვდით სრულ პროდუქციის სპექტრს ჩინეთის ქარხნებიდან — სამშენებლო მასალებიდან ინტერიერის მზა გადაწყვეტილებებამდე</span>
+    <span data-lang="be">Пастаўляем поўны спектр прадукцыі напрамую з фабрык КНР — ад будматэрыялаў да гатовых інтэр'ерных рашэнняў</span>
+  </p>
+
+  <div class="directions">
+    <!-- 1. Construction -->
+    <div class="dir">
+      <div class="dir__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="1"/><path d="M9 22V18h6v4M8 6h2M14 6h2M8 10h2M14 10h2M8 14h2M14 14h2"/></svg></div>
+      <div>
+        <div class="dir__title" data-i18n><span data-lang="ru">Строительные материалы</span><span data-lang="kk">Құрылыс материалдары</span><span data-lang="en">Construction materials</span><span data-lang="ka">სამშენებლო მასალები</span><span data-lang="be">Будаўнічыя матэрыялы</span></div>
+        <div class="dir__text" data-i18n><span data-lang="ru">Сухие смеси, плитка, фасадные материалы, трубы, арматура и другие базовые материалы</span><span data-lang="kk">Құрғақ қоспалар, плитка, фасад материалдары, құбырлар, арматура және басқа негізгі материалдар</span><span data-lang="en">Dry mixes, tiles, facade materials, pipes, fittings and other essential materials</span><span data-lang="ka">მშრალი ნარევები, ფილები, ფასადური მასალები, მილები, არმატურა და სხვა საბაზისო მასალები</span><span data-lang="be">Сухія сумесі, плітка, фасадныя матэрыялы, трубы, арматура і іншыя базавыя матэрыялы</span></div>
+      </div>
+    </div>
+    <!-- 2. Electrical -->
+    <div class="dir">
+      <div class="dir__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div>
+        <div class="dir__title" data-i18n><span data-lang="ru">Электрооборудование</span><span data-lang="kk">Электр жабдықтары</span><span data-lang="en">Electrical equipment</span><span data-lang="ka">ელექტრომოწყობილობა</span><span data-lang="be">Электраабсталяванне</span></div>
+        <div class="dir__text" data-i18n><span data-lang="ru">Розетки, выключатели, кабельная продукция, щитовое оборудование, освещение</span><span data-lang="kk">Розеткалар, ажыратқыштар, кабель өнімдері, қалқан жабдықтары, жарықтандыру</span><span data-lang="en">Sockets, switches, cable products, panel equipment, lighting</span><span data-lang="ka">როზეტები, გამრთველები, საკაბელო პროდუქცია, ფარების აღჭურვილობა, განათება</span><span data-lang="be">Разеткі, выключальнікі, кабельная прадукцыя, шчытавое абсталяванне, асвятленне</span></div>
+      </div>
+    </div>
+    <!-- 3. Furniture -->
+    <div class="dir">
+      <div class="dir__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 9V6a2 2 0 00-2-2H6a2 2 0 00-2 2v3"/><path d="M2 11v5a2 2 0 002 2h16a2 2 0 002-2v-5a2 2 0 00-2-2H4a2 2 0 00-2 2z"/><path d="M6 18v2M18 18v2"/></svg></div>
+      <div>
+        <div class="dir__title" data-i18n><span data-lang="ru">Мебель</span><span data-lang="kk">Жиһаз</span><span data-lang="en">Furniture</span><span data-lang="ka">ავეჯი</span><span data-lang="be">Мэбля</span></div>
+        <div class="dir__text" data-i18n><span data-lang="ru">Гостиничная, офисная, жилая — по каталогу фабрик-партнёров или по вашим чертежам</span><span data-lang="kk">Қонақүй, кеңсе, тұрғын үй — серіктес зауыттар каталогымен немесе сіздің сызбаңызбен</span><span data-lang="en">Hospitality, office, residential — from partner catalogs or your custom designs</span><span data-lang="ka">სასტუმროს, საოფისე, საცხოვრებელი — პარტნიორი ქარხნების კატალოგით ან თქვენი ნახაზებით</span><span data-lang="be">Гасцінічная, офісная, жылая — па каталогу фабрык-партнёраў або па вашых чарцяжах</span></div>
+      </div>
+    </div>
+    <!-- 4. Textiles -->
+    <div class="dir">
+      <div class="dir__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+      <div>
+        <div class="dir__title" data-i18n><span data-lang="ru">Текстиль и постельное бельё</span><span data-lang="kk">Тоқыма және төсек жабдықтары</span><span data-lang="en">Textiles &amp; bedding</span><span data-lang="ka">ტექსტილი და თეთრეული</span><span data-lang="be">Тэкстыль і пасцельная бялізна</span></div>
+        <div class="dir__text" data-i18n><span data-lang="ru">Постельное бельё, полотенца, шторы — для гостиниц, отелей и жилых объектов</span><span data-lang="kk">Төсек-орын, сүлгілер, перделер — қонақүйлер мен тұрғын нысандар үшін</span><span data-lang="en">Bed linen, towels, curtains — for hotels, hospitality and residential properties</span><span data-lang="ka">საწოლ-თეთრეული, პირსახოცები, ფარდები — სასტუმროებისთვის და საცხოვრებელი ობიექტებისთვის</span><span data-lang="be">Пасцельная бялізна, ручнікі, шторы — для гасцініц, гатэляў і жылых аб'ектаў</span></div>
+      </div>
+    </div>
+    <!-- 5. Turnkey -->
+    <div class="dir">
+      <div class="dir__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
+      <div>
+        <div class="dir__title" data-i18n><span data-lang="ru">Комплексные решения «под ключ»</span><span data-lang="kk">«Кілтке» дайын кешенді шешімдер</span><span data-lang="en">Turnkey solutions</span><span data-lang="ka">კომპლექსური გადაწყვეტილებები «გასაღებზე»</span><span data-lang="be">Комплексныя рашэнні «пад ключ»</span></div>
+        <div class="dir__text" data-i18n><span data-lang="ru">Проектная поставка полного спектра — оснащаем объект от фундамента до текстиля</span><span data-lang="kk">Толық спектрлі жобалық жеткізу — нысанды іргетастан тоқымаға дейін жабдықтаймыз</span><span data-lang="en">Full-spectrum project supply — equipping facilities from foundation to textiles</span><span data-lang="ka">სრულსპექტრიანი საპროექტო მიწოდება — ობიექტის აღჭურვა საძირკვლიდან ტექსტილამდე</span><span data-lang="be">Праектная пастаўка поўнага спектру — абсталюем аб'ект ад фундамента да тэкстылю</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<div class="section--alt">
+  <section class="section" id="process">
+    <div class="section__eyebrow" data-i18n>
+      <span data-lang="ru">Процесс</span><span data-lang="kk">Процесс</span><span data-lang="en">Process</span><span data-lang="ka">პროცესი</span><span data-lang="be">Працэс</span>
+    </div>
+    <h2 class="section__title" data-i18n>
+      <span data-lang="ru">Как мы работаем</span>
+      <span data-lang="kk">Біз қалай жұмыс істейміз</span>
+      <span data-lang="en">How we work</span>
+      <span data-lang="ka">როგორ ვმუშაობთ</span>
+      <span data-lang="be">Як мы працуем</span>
+    </h2>
+    <p class="section__desc" data-i18n>
+      <span data-lang="ru">Отлаженный процесс от первого обращения до получения товара на вашем складе</span>
+      <span data-lang="kk">Алғашқы өтініштен тауарды қоймаңызда алғанға дейінгі жолға қойылған процесс</span>
+      <span data-lang="en">A streamlined process from your first inquiry to receiving goods at your warehouse</span>
+      <span data-lang="ka">გამართული პროცესი პირველი მოთხოვნიდან საქონლის თქვენს საწყობში მიღებამდე</span>
+      <span data-lang="be">Адладжаны працэс ад першага звароту да атрымання тавару на вашым складзе</span>
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">1</div>
+        <div class="step__title" data-i18n><span data-lang="ru">Заявка и консультация</span><span data-lang="kk">Өтінім және кеңес</span><span data-lang="en">Inquiry &amp; consultation</span><span data-lang="ka">განაცხადი და კონსულტაცია</span><span data-lang="be">Заяўка і кансультацыя</span></div>
+        <div class="step__text" data-i18n><span data-lang="ru">Обсуждаем ваши потребности, объёмы и сроки</span><span data-lang="kk">Қажеттіліктеріңізді, көлемдерді және мерзімдерді талқылаймыз</span><span data-lang="en">We discuss your needs, volumes and timelines</span><span data-lang="ka">განვიხილავთ თქვენს საჭიროებებს, მოცულობებს და ვადებს</span><span data-lang="be">Абмяркоўваем вашы патрэбы, аб'ёмы і тэрміны</span></div>
+      </div>
+      <div class="step">
+        <div class="step__num">2</div>
+        <div class="step__title" data-i18n><span data-lang="ru">Подбор производителя</span><span data-lang="kk">Өндіруші таңдау</span><span data-lang="en">Manufacturer selection</span><span data-lang="ka">მწარმოებლის შერჩევა</span><span data-lang="be">Падбор вытворцы</span></div>
+        <div class="step__text" data-i18n><span data-lang="ru">Подбираем оптимальные фабрики из проверенной базы в КНР</span><span data-lang="kk">ҚХР-дағы тексерілген базадан оңтайлы зауыттарды таңдаймыз</span><span data-lang="en">We select optimal factories from our verified network in China</span><span data-lang="ka">ვირჩევთ ოპტიმალურ ქარხნებს შემოწმებული ბაზიდან ჩინეთში</span><span data-lang="be">Падбіраем аптымальныя фабрыкі з правернай базы ў КНР</span></div>
+      </div>
+      <div class="step">
+        <div class="step__num">3</div>
+        <div class="step__title" data-i18n><span data-lang="ru">Договор и оплата</span><span data-lang="kk">Шарт және төлем</span><span data-lang="en">Contract &amp; payment</span><span data-lang="ka">ხელშეკრულება და ანგარიშსწორება</span><span data-lang="be">Дагавор і аплата</span></div>
+        <div class="step__text" data-i18n><span data-lang="ru">Заключаем официальный договор, оплата в удобной для вас валюте</span><span data-lang="kk">Ресми шарт жасаймыз, сізге ыңғайлы валютамен төлем</span><span data-lang="en">We sign an official contract with payment in your preferred currency</span><span data-lang="ka">ვაფორმებთ ოფიციალურ ხელშეკრულებას, გადახდა მოსახერხებელ ვალუტაში</span><span data-lang="be">Заключаем афіцыйны дагавор, аплата ў зручнай для вас валюце</span></div>
+      </div>
+      <div class="step">
+        <div class="step__num">4</div>
+        <div class="step__title" data-i18n><span data-lang="ru">Производство и контроль</span><span data-lang="kk">Өндіріс және бақылау</span><span data-lang="en">Production &amp; QC</span><span data-lang="ka">წარმოება და კონტროლი</span><span data-lang="be">Вытворчасць і кантроль</span></div>
+        <div class="step__text" data-i18n><span data-lang="ru">Контролируем производство и проверяем качество на фабрике в КНР</span><span data-lang="kk">Өндірісті бақылаймыз және ҚХР зауытында сапасын тексереміз</span><span data-lang="en">We oversee production and inspect quality at the factory in China</span><span data-lang="ka">ვაკონტროლებთ წარმოებას და ვამოწმებთ ხარისხს ქარხანაში ჩინეთში</span><span data-lang="be">Кантралюем вытворчасць і правяраем якасць на фабрыцы ў КНР</span></div>
+      </div>
+      <div class="step">
+        <div class="step__num">5</div>
+        <div class="step__title" data-i18n><span data-lang="ru">Логистика и таможня</span><span data-lang="kk">Логистика және кеден</span><span data-lang="en">Logistics &amp; customs</span><span data-lang="ka">ლოჯისტიკა და საბაჟო</span><span data-lang="be">Лагістыка і мытня</span></div>
+        <div class="step__text" data-i18n><span data-lang="ru">Берём на себя всю логистику и таможенное оформление</span><span data-lang="kk">Барлық логистиканы және кедендік рәсімдеуді өзімізге аламыз</span><span data-lang="en">We handle all logistics and customs clearance</span><span data-lang="ka">ვიღებთ ყველა ლოჯისტიკას და საბაჟო გაფორმებას</span><span data-lang="be">Бярэм на сябе ўсю лагістыку і мытнае афармленне</span></div>
+      </div>
+      <div class="step">
+        <div class="step__num">6</div>
+        <div class="step__title" data-i18n><span data-lang="ru">Доставка на ваш склад</span><span data-lang="kk">Қоймаңызға жеткізу</span><span data-lang="en">Delivery to your warehouse</span><span data-lang="ka">მიწოდება თქვენს საწყობში</span><span data-lang="be">Дастаўка на ваш склад</span></div>
+        <div class="step__text" data-i18n><span data-lang="ru">Получаете товар, проверяете комплектацию — готово</span><span data-lang="kk">Тауарды аласыз, жинақтылығын тексересіз — дайын</span><span data-lang="en">You receive your goods, check the package — done</span><span data-lang="ka">იღებთ საქონელს, ამოწმებთ კომპლექტაციას — მზადაა</span><span data-lang="be">Атрымліваеце тавар, правяраеце камплектацыю — гатова</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── CTA ── -->
+<section class="cta-section" id="contact">
+  <div class="cta-banner">
+    <h2 data-i18n>
+      <span data-lang="ru">Готовы обсудить поставку?</span>
+      <span data-lang="kk">Жеткізуді талқылауға дайынсыз ба?</span>
+      <span data-lang="en">Ready to discuss your supply?</span>
+      <span data-lang="ka">მზად ხართ მიწოდების განსახილველად?</span>
+      <span data-lang="be">Гатовы абмеркаваць пастаўку?</span>
+    </h2>
+    <p data-i18n>
+      <span data-lang="ru">Свяжитесь с нами — рассчитаем стоимость, объёмы и сроки доставки</span>
+      <span data-lang="kk">Бізге хабарласыңыз — құнын, көлемін және жеткізу мерзімін есептейміз</span>
+      <span data-lang="en">Contact us — we'll calculate costs, volumes and delivery timelines</span>
+      <span data-lang="ka">დაგვიკავშირდით — დავითვლით ღირებულებას, მოცულობებს და მიწოდების ვადებს</span>
+      <span data-lang="be">Звяжыцеся з намі — разлічым кошт, аб'ёмы і тэрміны дастаўкі</span>
+    </p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/77077570443" class="btn btn--wa" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span data-i18n><span data-lang="ru">Написать в WhatsApp</span><span data-lang="kk">WhatsApp-қа жазу</span><span data-lang="en">Message on WhatsApp</span><span data-lang="ka">WhatsApp-ში მოწერა</span><span data-lang="be">Напісаць у WhatsApp</span></span>
+      </a>
+      <a href="tel:+77077570443" class="btn btn--outline" data-i18n>
+        <span data-lang="ru">Позвонить</span>
+        <span data-lang="kk">Қоңырау шалу</span>
+        <span data-lang="en">Call us</span>
+        <span data-lang="ka">დარეკვა</span>
+        <span data-lang="be">Патэлефанаваць</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      </a>
+    </div>
+    <div class="cta-phone">+7 707 757 04 43</div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">SUNNY HOLDING</div>
+      <div class="footer__copy">Sunny Holding Limited &copy; 2026</div>
+    </div>
+    <div class="footer__right">
+      <span class="footer__addr" data-i18n>
+        <span data-lang="ru">г. Алматы, Жибек жолы 64, офис 307</span>
+        <span data-lang="kk">Алматы қ., Жібек жолы 64, 307 кеңсе</span>
+        <span data-lang="en">Almaty, Zhibek Zholy 64, office 307</span>
+        <span data-lang="ka">ალმათი, ჟიბეკ ჟოლი 64, ოფისი 307</span>
+        <span data-lang="be">г. Алматы, Жыбек Жолы 64, офіс 307</span>
+      </span>
+      <a href="tel:+77077570443" class="footer__phone">+7 707 757 04 43</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var burger = document.getElementById('burger');
+    var nav = document.getElementById('nav');
+    burger.addEventListener('click', function() {
+      burger.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav__center a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        burger.classList.remove('active');
+        nav.classList.remove('open');
+      });
+    });
+
+    var langSw = document.getElementById('langSw');
+    var langLabel = document.getElementById('langLabel');
+    var langLabels = { ru: 'RU', kk: 'KK', en: 'EN', ka: 'KA', be: 'BE' };
+    var validLangs = ['ru','kk','en','ka','be'];
+
+    var savedLang;
+    try { savedLang = localStorage.getItem('sunny-lang'); } catch(e) {}
+    if (savedLang && validLangs.indexOf(savedLang) !== -1) setLang(savedLang);
+
+    document.getElementById('langToggle').addEventListener('click', function(e) {
+      e.stopPropagation();
+      langSw.classList.toggle('open');
+    });
+
+    langSw.querySelector('.lang-sw__menu').addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-lang-btn]');
+      if (!btn) return;
+      setLang(btn.getAttribute('data-lang-btn'));
+      langSw.classList.remove('open');
+    });
+
+    document.addEventListener('click', function() { langSw.classList.remove('open'); });
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      langLabel.textContent = langLabels[lang] || lang.toUpperCase();
+      document.querySelectorAll('[data-lang-btn]').forEach(function(b) {
+        b.classList.toggle('active', b.getAttribute('data-lang-btn') === lang);
+      });
+      try { localStorage.setItem('sunny-lang', lang); } catch(e) {}
+    }
+
+    var savedTheme;
+    try { savedTheme = localStorage.getItem('sunny-theme'); } catch(e) {}
+    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+
+    document.getElementById('themeBtn').addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark = current === 'dark' ||
+        (current !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('sunny-theme', next); } catch(e) {}
+    });
+  })();
+</script>
+
+</body>
+</html>
